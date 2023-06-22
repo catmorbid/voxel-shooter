@@ -1,21 +1,22 @@
 const Faces = preload("./Faces.gd");
 const vox_to_godot = Basis(Vector3.RIGHT, Vector3.FORWARD, Vector3.UP);
 
-func generate(vox, voxel_data, scale, snaptoground):
-	var generator = VoxelMeshGenerator.new(vox, voxel_data, scale, snaptoground);
+func generate(vox, voxel_data, scale, snaptoground, smooth):
+	var generator = VoxelMeshGenerator.new(vox, voxel_data, scale, snaptoground, smooth);
 
 	return generator.generate_mesh();
 
 class MeshGenerator:
 	var surfaces = {};
 
-	func ensure_surface_exists(surface_index: int, color: Color, material: Material):
+	func ensure_surface_exists(surface_index: int, color: Color, material: Material, smoothGroup: float):
 		if (surfaces.has(surface_index)): return;
 
 		var st = SurfaceTool.new();
 		st.begin(Mesh.PRIMITIVE_TRIANGLES);
 		st.set_color(color);
 		st.set_material(material);
+		st.set_smooth_group(smoothGroup);
 		surfaces[surface_index] = st;
 
 	func add_vertex(surface_index: int, vertex: Vector3):
@@ -40,12 +41,14 @@ class VoxelMeshGenerator:
 	var voxel_data = {};
 	var scale:float;
 	var snaptoground:bool;
+	var smoothGroup:float;
 
-	func _init(vox,voxel_data,scale,snaptoground):
+	func _init(vox,voxel_data,scale,snaptoground,smoothGroup):
 		self.vox = vox;
 		self.voxel_data = voxel_data;
 		self.scale = scale;
 		self.snaptoground = snaptoground;
+		self.smoothGroup = smoothGroup;
 
 	func get_material(voxel):
 		var surface_index = voxel_data[voxel];
@@ -91,7 +94,7 @@ class VoxelMeshGenerator:
 			var surface_index = voxel_data[voxel];
 			var color = vox.colors[surface_index];
 			var material = vox.materials[surface_index].get_material(color);
-			gen.ensure_surface_exists(surface_index, color, material);
+			gen.ensure_surface_exists(surface_index, color, material, smoothGroup);
 
 			for t in voxelSides:
 				gen.add_vertex(surface_index, yoffset + vox_to_godot * (t + voxel) * scale);

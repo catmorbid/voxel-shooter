@@ -25,6 +25,9 @@ func import(source_path, destination_path, options, _platforms, _gen_files):
 	var mergeKeyframes = false
 	if options.has("FirstKeyframeOnly"):
 		mergeKeyframes = not bool(options.FirstKeyframeOnly)
+	var smoothGroup = 0
+	if options.has("SmoothGroup"):
+		smoothGroup = float(options.SmoothGroup)
 
 
 	var file = FileAccess.open(source_path, FileAccess.READ)
@@ -34,7 +37,7 @@ func import(source_path, destination_path, options, _platforms, _gen_files):
 
 	var identifier = PackedByteArray([ file.get_8(), file.get_8(), file.get_8(), file.get_8() ]).get_string_from_ascii()
 	var version = file.get_32()
-	print('Importing: ', source_path, ' (scale: ', scale, ', file version: ', version, ', greedy mesh: ', greedy, ', snap to ground: ', snaptoground, ')');
+	print('Importing: ', source_path, ' (scale: ', scale, ', file version: ', version, ', greedy mesh: ', greedy, ', snap to ground: ', snaptoground, ', smooth group: ',smoothGroup, ')');
 
 	var vox = VoxData.new();
 	if identifier == 'VOX ':
@@ -49,9 +52,9 @@ func import(source_path, destination_path, options, _platforms, _gen_files):
 	var meshes = []
 	for keyframeVoxels in voxel_data:
 		if greedy:
-			meshes.append(GreedyMeshGenerator.new().generate(vox, voxel_data[keyframeVoxels], scale, snaptoground))
+			meshes.append(GreedyMeshGenerator.new().generate(vox, voxel_data[keyframeVoxels], scale, snaptoground, smoothGroup))
 		else:
-			meshes.append(CulledMeshGenerator.new().generate(vox, voxel_data[keyframeVoxels], scale, snaptoground))
+			meshes.append(CulledMeshGenerator.new().generate(vox, voxel_data[keyframeVoxels], scale, snaptoground, smoothGroup))
 	return meshes
 
 func string_to_vector3(input: String) -> Vector3:

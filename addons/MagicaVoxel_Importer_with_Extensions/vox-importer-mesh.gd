@@ -50,6 +50,10 @@ func _get_import_options(path, preset):
 		{
 			'name': 'FirstKeyframeOnly',
 			'default_value': true
+		},
+		{	
+			'name': 'SmoothGroup',
+			'default_value': -1.0
 		}
 	]
 

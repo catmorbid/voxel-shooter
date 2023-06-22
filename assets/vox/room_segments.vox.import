@@ -16,3 +16,4 @@ Scale=0.1
 GreedyMeshGenerator=false
 SnapToGround=true
 FirstKeyframeOnly=true
+SmoothGroup=-1.0

@@ -100,10 +100,11 @@ var maxs :Vector3 = Vector3(-1000000,-1000000,-1000000)
 # Primary RefCounted: https://0fps.net/2012/06/30/meshing-in-a-minecraft-game/
 # Secondary RefCounted: https://www.gedge.ca/dev/2014/08/17/greedy-voxel-meshing
 # voxel_data is a dict[Vector3]int
-func generate(vox :VoxData, voxel_data :Dictionary, scale :float, snaptoground : bool):
+func generate(vox :VoxData, voxel_data :Dictionary, scale :float, snaptoground : bool, smoothGroup : float):
 	# Remeber, MagicaVoxel thinks Y is the depth axis. We convert to the correct
 	# coordinate space when we generate the faces.
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	st.set_smooth_group(smoothGroup)
 	
 	# Short-circut empty models
 	if voxel_data.size() == 0:
