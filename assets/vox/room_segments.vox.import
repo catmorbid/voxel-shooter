@@ -1,19 +1,18 @@
 [remap]
 
-importer="MagicaVoxel.With.Extensions.To.Mesh"
-type="Mesh"
+importer="MagicaVoxel.With.Extensions.To.MeshLibrary"
+type="MeshLibrary"
 uid="uid://2ffb02mkdorb"
-path="res://.godot/imported/room_segments.vox-b1bac986e4288b35f34d3a313e374701.mesh"
+path="res://.godot/imported/room_segments.vox-b1bac986e4288b35f34d3a313e374701.meshlib"
 
 [deps]
 
 source_file="res://assets/vox/room_segments.vox"
-dest_files=["res://.godot/imported/room_segments.vox-b1bac986e4288b35f34d3a313e374701.mesh"]
+dest_files=["res://.godot/imported/room_segments.vox-b1bac986e4288b35f34d3a313e374701.meshlib"]
 
 [params]
 
-Scale=0.1
+Scale=0.2
 GreedyMeshGenerator=false
 SnapToGround=true
-FirstKeyframeOnly=true
 SmoothGroup=-1.0

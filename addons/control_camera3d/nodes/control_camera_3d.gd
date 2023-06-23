@@ -14,13 +14,13 @@ extends Camera3D
 @export_enum("LEFT_BUTTON", "MIDDLE_BUTTON")
 var action_mouse_button: String = "MIDDLE_BUTTON"
 @export_range(0.5, 2, 0.1) var rotation_speed: float = 1.0
-@export_range(0.5, 10, 0.1) var translation_speed: float = 1.0
+@export_range(0.5, 30, 0.1) var translation_speed: float = 1.0
 @export_range(0.5, 2, 0.1) var zoom_speed: float = 1.0
 @export var zoom_in: float = 1:
 	set(value):
 		if value > 0:
 			zoom_in = value
-@export var zoom_out: float = 10:
+@export var zoom_out: float = 30:
 	set(value):
 		if value > zoom_in:
 			zoom_out = value

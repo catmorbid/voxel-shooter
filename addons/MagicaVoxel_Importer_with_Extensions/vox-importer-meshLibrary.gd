@@ -46,7 +46,12 @@ func _get_import_options(path, preset_index):
 		{
 			'name': 'SnapToGround',
 			'default_value': false
+		},		
+		{	
+			'name': 'SmoothGroup',
+			'default_value': -1.0
 		}
+		
 	]
 
 func _get_option_visibility(path, option, options):
