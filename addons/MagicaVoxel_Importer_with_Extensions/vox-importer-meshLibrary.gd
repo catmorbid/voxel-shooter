@@ -58,11 +58,15 @@ func _get_option_visibility(path, option, options):
 	return true
 
 func _import(source_path, destination_path, options, _platforms, _gen_files):
+	var createColliders : bool = true;
 	var meshes = VoxImporterCommon.new().import(source_path, destination_path, options, _platforms, _gen_files);
 	var meshLib = MeshLibrary.new()
 	for mesh in meshes:
 		var itemId = meshLib.get_last_unused_item_id()
 		meshLib.create_item(itemId)
-		meshLib.set_item_mesh(itemId, mesh)
+		meshLib.set_item_mesh(itemId, mesh)		
+		#if (createColliders):
+			#todo create colliders
+			
 	var full_path = "%s.%s" % [ destination_path, _get_save_extension() ]
 	return ResourceSaver.save(meshLib, full_path)

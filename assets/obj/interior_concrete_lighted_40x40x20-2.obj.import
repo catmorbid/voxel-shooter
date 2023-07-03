@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://danx6y4bvbnui"
+path="res://.godot/imported/interior_concrete_lighted_40x40x20-2.obj-63e3afa51f67bd083de894a6f4faeff1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/interior_concrete_lighted_40x40x20-2.obj-63e3afa51f67bd083de894a6f4faeff1.mesh"]
+
+source_file="res://assets/obj/interior_concrete_lighted_40x40x20-2.obj"
+dest_files=["res://.godot/imported/interior_concrete_lighted_40x40x20-2.obj-63e3afa51f67bd083de894a6f4faeff1.mesh", "res://.godot/imported/interior_concrete_lighted_40x40x20-2.obj-63e3afa51f67bd083de894a6f4faeff1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
